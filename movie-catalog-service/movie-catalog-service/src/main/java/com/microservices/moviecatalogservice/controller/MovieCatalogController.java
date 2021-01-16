@@ -1,6 +1,7 @@
 package com.microservices.moviecatalogservice.controller;
 
-import java.util.Arrays;
+
+
 
 
 import java.util.List;
@@ -17,7 +18,6 @@ import org.springframework.web.reactive.function.client.WebClient;
 import com.microservices.moviecatalogservice.model.CatalogItem;
 import com.microservices.moviecatalogservice.model.ListObjectOfMovieCatalog;
 import com.microservices.moviecatalogservice.model.MovieInfo;
-import com.microservices.moviecatalogservice.model.Rating;
 import com.microservices.moviecatalogservice.model.RatingListObject;
 
 @RestController
@@ -29,6 +29,9 @@ public class MovieCatalogController {
 	
 	@Autowired
 	WebClient.Builder webclientbuilder;
+	
+	@Autowired
+	ListObjectOfMovieCatalog listofCatalogItems;
 	
 	@RequestMapping("/{userId}")
 	public ListObjectOfMovieCatalog getCatalog(@PathVariable("userId")  String userId){
@@ -51,7 +54,7 @@ public class MovieCatalogController {
 				})
 				.collect(Collectors.toList());
 		
-		ListObjectOfMovieCatalog listofCatalogItems = new ListObjectOfMovieCatalog();
+		//ListObjectOfMovieCatalog listofCatalogItems = new ListObjectOfMovieCatalog();
 				listofCatalogItems.setListofratings(listcatalogitem);
 				return listofCatalogItems;
 		

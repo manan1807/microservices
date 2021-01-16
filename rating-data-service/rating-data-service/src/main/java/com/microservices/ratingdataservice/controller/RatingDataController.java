@@ -4,7 +4,7 @@ package com.microservices.ratingdataservice.controller;
 import java.util.Arrays;
 import java.util.List;
 
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,6 +16,9 @@ import com.microservices.ratingdataservice.model.RatingListObject;
 @RequestMapping("/rating")
 public class RatingDataController {
 
+	@Autowired
+	private RatingListObject listofratings;
+	
 	@RequestMapping("/{movieId}")
 	public Rating getRatingOfMovie(@PathVariable("movieId") String movieId){
 		
@@ -24,7 +27,7 @@ public class RatingDataController {
 	
 	@RequestMapping("user/{userId}")
 	public RatingListObject getRatingOfMovies(@PathVariable("userId") String userId){
-		RatingListObject listofratings = new RatingListObject();
+	
 		List<Rating> ratings = Arrays.asList(
 				new Rating("1001", 4),
 				new Rating("1002", 5) );
